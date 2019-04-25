@@ -1,1 +1,0 @@
-# freelog-cli
