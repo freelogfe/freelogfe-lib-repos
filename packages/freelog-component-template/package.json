@@ -1,0 +1,20 @@
+{
+  "name": "@freelog/freelog-component-template",
+  "version": "0.0.10",
+  "description": "templates for developing freelog component",
+  "keywords": [
+    "freelog",
+    "generator",
+    "component",
+    "template",
+    "vue"
+  ],
+  "author": "zechengdai",
+  "license": "MIT",
+  "scripts": {
+    "publish": "npm publish --access=public"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
