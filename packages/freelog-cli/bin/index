@@ -7,15 +7,14 @@ const generate = require('../lib/commands/generateor')
 const {publish} = require('../lib/commands/publish')
 const pkg = require('../package.json')
 
-program
-  .version(pkg.version)
+program.version(pkg.version)
 
 /**
- * scaffold to init component
+ * scaffold to init widget
  */
 program
   .command('init [target]')
-  .description('create a new freelog component project')
+  .description('create a new freelog widget project')
   .option('-t, --templatePath [value]', 'init with local template')
   .option('-d, --destPath [value]', 'destination path for generating')
   .action(function (target, options) {
@@ -27,14 +26,26 @@ program
     generate(options)
   })
 
+/**
+ * create a new widget
+ * 
+ */
+program
+  .command('create [widgetName]')
+  .description('create a new freelog widget project')
+  .option('-d, --destPath [value]', 'destination path for generating')
+  .action((widgetName, options) => {
+    console.log('widgetName -', widgetName, options)
+  })
+
 
 /**
- * publish freelog component to freelog assets
+ * publish freelog widget to freelog assets
  * env: beta/prod
  */
 program
   .command('publish [env]')
-  .description('publish component to freelog server')
+  .description('publish widget to freelog server')
   .option('-t, --type [value]', 'resource type')
   .option('-d, --desc [value]', 'resource name')
   .option('-f, --file [value]', 'resource file path')
@@ -47,10 +58,10 @@ program
 
 program.on('--help', () => {
   console.log(`  Usages:
-    ${chalk.gray('# publish component to freelog server')}
-    $ freelog-cli publish
-    ${chalk.gray('# create a new freelog component project')}
+    ${chalk.gray('# create a new freelog widget project')}
     $ freelog-cli init
+    ${chalk.gray('# publish widget to freelog server')}
+    $ freelog-cli publish
   `)
 })
 

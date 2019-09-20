@@ -1,10 +1,9 @@
 const chalk = require('chalk')
 const Metalsmith = require('metalsmith')
 const home = require('user-home')
-const download = require('download-git-repo')
 const exists = require('fs').existsSync
 const inquirer = require('inquirer')
-const fs = require('fs-extra')
+const fse = require('fs-extra')
 const rm = require('rimraf').sync
 const ora = require('ora')
 const render = require('consolidate').handlebars.render
@@ -15,12 +14,15 @@ const logger = require('../logger')
 const TPL_DIR = path.join(home, '.freelog-templates')
 const tmp = require('tmp')
 
-const defaultRepositoryName = 'freelogfe/freelog-component-template'
+const defaultRepositoryName = 'freelogfe/freelog-widget-template'
 const TEMPLATE_NORMAL = 'template-normal'
 const TEMPLATE_VUE = 'template-vue'
 
+const META_DIR_PATH = `meta`
+const TEMPLATES_DIR_PATH = 'templates'
+
 function getOptions(src) {
-  return require(`${src}/meta`)
+  return require(`${src}/${META_DIR_PATH}`)
 }
 
 function copyTo(src, dest, done) {
@@ -104,7 +106,9 @@ function loadRepository(tpl) {
       spinner.start()
       var src = path.join(TPL_DIR, tpl)
       if (exists(src)) rm(src)
-      download(tpl, src, {clone: true}, err => {
+      const download = require('download-git-repo')
+  
+      download(tpl, src, { clone: true }, err => {
         spinner.stop()
         if (err) logger.fatal(`Failed to download repo ${tpl}: ` + err.message.trim())
         resolve(src)
@@ -168,15 +172,15 @@ function renderTemplateFiles() {
   }
 }
 
-
 function getTemplateList(src) {
-  return fs.readdirSync(path.join(src, 'templates'))
+  return fse.readdirSync(path.join(src, TEMPLATES_DIR_PATH))
 }
 
 module.exports = async function (opts) {
   opts = opts || {}
   opts.isCustomTemplate = !!opts.templateTarget
   opts.templateTarget = opts.isCustomTemplate ? opts.templateTarget : defaultRepositoryName
+  
   var src = await loadRepository(opts.templateTarget)
 
   if (!opts.isCustomTemplate) {
