@@ -1,6 +1,6 @@
 {
   "name": "@freelog/freelog-cli",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "freelog命令行工具",
   "main": "index.js",
   "scripts": {
