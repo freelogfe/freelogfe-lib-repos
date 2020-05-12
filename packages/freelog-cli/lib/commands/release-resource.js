@@ -1,6 +1,6 @@
 const fs = require('fs');
 const axios = require('axios');
-const semver = require('semver')
+const semver = require('semver');
 
 const {getUserInfo, getCookies} = require('./get-auth-info');
 const {serverOrigin, projectPackage, colorLog} = require('../config');
@@ -35,13 +35,13 @@ async function main() {
             return;
         }
 
-        colorLog.success('Update release successfull !')
+        colorLog.success('Update release succeeded !')
     } else {
         const result = await newRelease();
         if (result === null) {
             return;
         }
-        colorLog.success('Create release successfull !')
+        colorLog.success('Create release succeeded !')
     }
 
 }
