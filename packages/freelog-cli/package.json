@@ -9,7 +9,7 @@
     "test": "mocha ./test/*.test.js"
   },
   "bin": {
-    "freelog-cli": "./bin/index"
+    "freelog-cli": "./bin/index.js"
   },
   "keywords": [
     "freelog",
@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "async": "2.6.0",
+    "axios": "^0.19.2",
     "chalk": "2.3.0",
+    "chalk-pipe": "^4.0.0",
     "commander": "^2.17.1",
     "consolidate": "0.15.0",
     "didyoumean": "^1.2.1",
