@@ -11,6 +11,7 @@ const requestAnimationFrame = window.requestAnimationFrame || window.mozRequestA
 class MarkdownParser {
   /**
    * @param opts {object}
+   * @param opts.entityNid {string}
    * @param opts.presentableId {string}
    * @param opts.subReleases {object}
    * @param opts.headingRender {function}
@@ -44,9 +45,9 @@ class MarkdownParser {
     var subReleases = this._opts.subReleases
     const leng = subReleases.length
     for(let i = 0; i < leng; i++) {
-      const { id, n } = subReleases[i]
+      const { id, name } = subReleases[i]
       this.subReleasesMap[id] = subReleases[i]
-      this.subReleasesMap[n] = subReleases[i]
+      this.subReleasesMap[name] = subReleases[i]
     }
   }
 
@@ -137,11 +138,11 @@ class MarkdownParser {
     if (!$el){
       return;
     }
-    if (rect.top <= 10) {
-      $el.style.top = 0;
-    } else {
-      $el.style.top = '10px';
-    }
+    // if (rect.top <= 15) {
+    //   $el.style.top = 0;
+    // } else {
+    //   $el.style.top = '15px';
+    // }
   }
 
   tocRender(toc) {
@@ -152,7 +153,7 @@ class MarkdownParser {
     }
     var html = '<ul class="alpha-markdown-toc">'
     toc.forEach(function (item) {
-      html += `<li class="level-${item.level}"><a href="#${item.slug}" alt="${item.title}">${item.title}</a></li>`
+      html += `<li class="level-${item.mgLevel}"><a href="#${item.slug}" alt="${item.title}">${item.title}</a></li>`
     })
     html += '</ul>'
 
@@ -190,19 +191,55 @@ class MarkdownParser {
   setHeadingHandler(renderer) {
     var index = 0
     var self = this;
-    renderer.heading = function (text, level) {
-      var slug = `nav_slug_${level}_${index++}`
-      if(level <= 3) {
-        self._tocs.push({
-          level: level,
-          slug: slug,
-          title: text
-        })
+    try {
+      renderer.heading = function (text, level) {
+        var slug = `nav_slug_${level}_${index++}`
+        if(level <= 3) {
+          self._tocs.push({
+            level: level,
+            mgLevel: level,
+            slug: slug,
+            title: text
+          })
+        }
+        self._tocs = self.formatTocs(self._tocs)
+        
+        
+        return (self._opts.headingRender && self._opts.headingRender(slug)) ||
+          `<h${level} id="${slug}"><a href="#${slug}" class="anchor"></a></a>${text}</h${level}>`
       }
-      
-      return (self._opts.headingRender && self._opts.headingRender(slug)) ||
-        `<h${level} id="${slug}"><a href="#${slug}" class="anchor"></a></a>${text}</h${level}>`
+    } catch (error) {
+      console.log(error)
     }
+    
+  }
+
+  formatTocs(tocs) {
+    const levelSet = new Set()
+    tocs.forEach(toc => levelSet.add(toc.level))
+    switch(levelSet.size) {
+      case 1: {
+        tocs = tocs.map(toc => {
+          toc.mgLevel = 1
+          return toc
+        })
+        break
+      }
+      case 2: {
+        tocs = tocs.map(toc => {
+          console.log(toc, levelSet.has(1), levelSet)
+          if (levelSet.has(1)) {
+            toc.mgLevel = toc.level === 3 ? 2 : 1
+          } else {
+            toc.mgLevel = toc.level - 1
+          }
+          return toc
+        })
+        break
+      }
+      default: {}
+    }
+    return tocs
   }
 
   setImageHandler(renderer) {
@@ -210,26 +247,33 @@ class MarkdownParser {
     var self = this
     var resIndex = 0
     renderer.image = function (href, title, text) {
+      
       var subReleaseId, version
       try {
-        if (text === 'freelog-resource') {
-          const { v, id } = self.subReleasesMap && self.subReleasesMap[href]
+        const [ name, queryString ] = href.split('?')
+        const size = self.getImgSizeByQueryStr(queryString)
+        if (text === 'freelog-resource' && self.subReleasesMap && self.subReleasesMap[name]) {
+          const { id } = self.subReleasesMap[name]
           subReleaseId = id
-          version = v
         }
 
-        if (subReleaseId && version) {
+        if (subReleaseId) {
           var img = new Image();
           var imgId = `resource_img_${resIndex++}`
           img.id = imgId
           img.src = "//visuals.oss-cn-shenzhen.aliyuncs.com/loading.gif"
           img.alt = text
+          if (size.width) {
+            img.width = size.width
+          }
+          if (size.height) {
+            img.height = size.height
+          }
           img.dataset.releaseid = subReleaseId
-          img.dataset.version = version
           img.classList.add(LAZY_LOAD_SPEC)
           title && (img.title = title)
 
-          self.loadFreelogResource(subReleaseId, version, function (fn) {
+          self.loadFreelogResource(subReleaseId, function (fn) {
             var $img = self._opts.container.querySelector(`#${imgId}`)
             fn($img)
           })
@@ -244,10 +288,22 @@ class MarkdownParser {
     };
   }
 
-  loadFreelogResource(subReleaseId, version, done) {
+  getImgSizeByQueryStr(queryString = '') {
+    const size = {}
+    if (queryString !== '') {
+      const tmpArr = queryString.split('&')
+      for (const item of tmpArr) {
+        const [ key, val] = item.split('=')
+        size[key] = val
+      }
+    }
+    return size
+  }
+
+  loadFreelogResource(subReleaseId, done) {
     var self = this;
-    const { presentableId } = self._opts
-    return window.FreelogApp.QI.fetchSubReleaseData({presentableId, subReleaseId, version})
+    const { presentableId, entityNid } = self._opts
+    return window.FreelogApp.QI.getPresnetableSubDependData(presentableId, subReleaseId, entityNid)
       .then((res) => {
         //fetch image fail
         var type = res.headers.get('freelog-resource-type')

@@ -34,8 +34,20 @@ function uploadDir(opts) {
     walker.on('file', (root, fileState, next) => {
       const localFile = path.join(root, fileState.name)
       const target = path.relative(opts.local, localFile)
-      const promise = store.put((opts.path || '') + target, localFile)
-      promises.push(promise)
+      if (/\.DS_Store$/.test(target)) {
+        next()
+        return 
+      } else if (/\.html$/.test(target)){
+        const promise = store.put((opts.path || '') + target, localFile)
+        promises.push(promise)
+      } else {
+        const promise = store.put((opts.path || '') + target, localFile, {
+          headers: {
+            'Cache-Control': 'public,max-age=31536000'
+          }
+        })
+        promises.push(promise)
+      }
       next()
     })
 
