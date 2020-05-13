@@ -72,8 +72,8 @@ module.exports = main;
 
 async function uploadWidget(filePath) {
   const form = new FormData();
-  form.append('file', fs.createReadStream(filePath));
   form.append('resourceType', 'widget');
+  form.append('file', fs.createReadStream(filePath));
 
   const options = {
     method: 'post',

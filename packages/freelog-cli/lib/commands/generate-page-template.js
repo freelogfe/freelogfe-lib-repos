@@ -9,7 +9,10 @@ const main = async () => {
 
 
     // const html = templateString.replace('<!-- Theme template placeholder -->', `<%= require('html-loader!./them-template.html') %>`);
-    const html = templateString.replace(/(?<=<div id="js-page-container">)[\s\S]*?(?=<\/div>)/, `<%= require('html-loader!./them-template.html') %>`);
+    const html = templateString
+      .replace(/(?<=<div id="js-page-container">)[\s\S]*?(?=<\/div>)/, `<%= require('html-loader!./them-template.html') %>`)
+      .replace('{{authInfoFragment | safe}}', `<%= require('html-loader!./__auth_info__.html') %>`)
+    ;
 
     if (!fs.existsSync('public') || fs.statSync('public').isFile()) {
         fs.mkdirSync('public');
