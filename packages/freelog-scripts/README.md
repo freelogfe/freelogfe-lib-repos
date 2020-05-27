@@ -28,16 +28,19 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`freelog-scripts hello [FILE]`](#freelog-scripts-hello-file)
+* [`freelog-scripts getenv [FILE]`](#freelog-scripts-getenv-file)
 * [`freelog-scripts help [COMMAND]`](#freelog-scripts-help-command)
+* [`freelog-scripts login [FILE]`](#freelog-scripts-login-file)
+* [`freelog-scripts release [FILE]`](#freelog-scripts-release-file)
+* [`freelog-scripts upload [FILE]`](#freelog-scripts-upload-file)
 
-## `freelog-scripts hello [FILE]`
+## `freelog-scripts getenv [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ freelog-scripts hello [FILE]
+  $ freelog-scripts getenv [FILE]
 
 OPTIONS
   -f, --force
@@ -49,7 +52,7 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/liu-kai-github/freelog-scripts/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/getenv.ts](https://github.com/liu-kai-github/freelog-scripts/blob/v0.0.0/src/commands/getenv.ts)_
 
 ## `freelog-scripts help [COMMAND]`
 
@@ -67,4 +70,64 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
+
+## `freelog-scripts login [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ freelog-scripts login [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+
+EXAMPLE
+  $ freelog-scripts hello
+  hello world from ./src/hello.ts!
+```
+
+_See code: [src/commands/login.ts](https://github.com/liu-kai-github/freelog-scripts/blob/v0.0.0/src/commands/login.ts)_
+
+## `freelog-scripts release [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ freelog-scripts release [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+
+EXAMPLE
+  $ freelog-scripts hello
+  hello world from ./src/hello.ts!
+```
+
+_See code: [src/commands/release.ts](https://github.com/liu-kai-github/freelog-scripts/blob/v0.0.0/src/commands/release.ts)_
+
+## `freelog-scripts upload [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ freelog-scripts upload [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+
+EXAMPLE
+  $ freelog-scripts hello
+  hello world from ./src/hello.ts!
+```
+
+_See code: [src/commands/upload.ts](https://github.com/liu-kai-github/freelog-scripts/blob/v0.0.0/src/commands/upload.ts)_
 <!-- commandsstop -->
