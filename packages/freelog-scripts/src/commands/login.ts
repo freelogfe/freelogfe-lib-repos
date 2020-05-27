@@ -38,41 +38,7 @@ export default class Hello extends Command {
   // static args = [{name: 'file'}]
 
   async run() {
-    let response;
-
-    while (true) {
-      const answers = await inquirer.prompt(questions);
-      response = await axios.post(serverOrigin + '/v1/passport/login', {
-        isRememer: 1,
-        loginName: answers.username,
-        password: answers.password,
-      });
-
-      if (response.data.ret === 0 && response.data.errcode === 0) {
-        break;
-      }
-
-      colorLog.error('Invalid username or password !!!');
-    }
-
-    const cookies = response.headers['set-cookie'][0];
-
-    const content = {
-      cookies,
-      userInfo: response.data.data,
-    };
-
-    const freelogDir = path.resolve(os.homedir(), '.freelog/');
-
-    if (!fs.existsSync(freelogDir)) {
-      fs.mkdirSync(freelogDir);
-    }
-
-    const authInfoPath = path.resolve(freelogDir, 'authInfo.json');
-    fs.writeFileSync(authInfoPath, JSON.stringify(content, null, 2), 'utf-8');
-
-    colorLog.success('Login successfull !');
-    return content;
+    return login();
     // const {args, flags} = this.parse(Hello)
     //
     // const name = flags.name ?? 'world'
@@ -81,4 +47,61 @@ export default class Hello extends Command {
     //   this.log(`you input --force and --file: ${args.file}`)
     // }
   }
+}
+
+const freelogDir = path.resolve(os.homedir(), '.freelog/');
+const authInfoPath = path.resolve(freelogDir, 'authInfo.json');
+
+async function login() {
+  let response;
+
+  while (true) {
+    const answers = await inquirer.prompt(questions);
+    response = await axios.post(serverOrigin + '/v1/passport/login', {
+      isRememer: 1,
+      loginName: answers.username,
+      password: answers.password,
+    });
+
+    if (response.data.ret === 0 && response.data.errcode === 0) {
+      break;
+    }
+
+    colorLog.error('Invalid username or password !!!');
+  }
+
+  const cookies = response.headers['set-cookie'][0];
+
+  const content = {
+    cookies,
+    userInfo: response.data.data,
+  };
+
+  if (!fs.existsSync(freelogDir)) {
+    fs.mkdirSync(freelogDir);
+  }
+
+  fs.writeFileSync(authInfoPath, JSON.stringify(content, null, 2), 'utf-8');
+
+  colorLog.success('Login successfull !');
+  return content;
+}
+
+export async function getCookies(forceLogin: boolean = false): Promise<string> {
+  if (fs.existsSync(authInfoPath) && !forceLogin) {
+    return JSON.parse(fs.readFileSync(authInfoPath, 'utf-8')).cookies;
+  }
+
+  const content: any = await login();
+  return JSON.parse(content).cookies;
+}
+
+export async function getUserInfo(forceLogin: boolean = false) {
+
+  if (fs.existsSync(authInfoPath) && !forceLogin) {
+    return JSON.parse(fs.readFileSync(authInfoPath, 'utf-8')).userInfo;
+  }
+
+  const content: any = await login();
+  return JSON.parse(content).userInfo;
 }
