@@ -9,7 +9,7 @@ import {serverOrigin, projectPackage, colorLog} from '../config';
 
 
 export default class Hello extends Command {
-  static description = 'describe the command here';
+  static description = 'upload and create resource';
 
   static examples = [
     `$ freelog-scripts upload
@@ -38,7 +38,7 @@ export default class Hello extends Command {
   }
 }
 
-async function run() {
+export async function run() {
 
   if (!fs.existsSync(projectPackage.main)) {
     colorLog.error(`Please build ! Run 'npm run build'`);
