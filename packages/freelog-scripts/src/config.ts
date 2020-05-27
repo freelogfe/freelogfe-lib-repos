@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 // @ts-ignore
-const chalkPipe = require('chalk-pipe');
+import * as chalkPipe from 'chalk-pipe';
 
 export const serverOrigin: string = 'http://qi.testfreelog.com';
 
