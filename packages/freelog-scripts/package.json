@@ -1,6 +1,6 @@
 {
   "name": "@freelog/freelog-scripts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "freelog-scripts": "./bin/run"
@@ -53,7 +53,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/liu-kai-github/freelog-scripts",
+  "homepage": "https://github.com/freelogfe/freelogfe-lib-repos/tree/master/packages/freelog-scripts#readme",
   "keywords": [
     "oclif"
   ],
@@ -66,7 +66,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "liu-kai-github/freelog-scripts",
+  "repository": "https://github.com/freelogfe/freelogfe-lib-repos",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
