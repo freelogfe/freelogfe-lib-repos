@@ -1,6 +1,6 @@
 {
   "name": "@freelog/freelog-scripts",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "freelog-scripts": "./bin/run"
@@ -12,9 +12,14 @@
     "@oclif/plugin-help": "^3.0.1",
     "axios": "^0.19.2",
     "chalk-pipe": "^4.0.0",
+    "clean-webpack-plugin": "^3.0.0",
     "form-data": "^3.0.0",
+    "html-webpack-plugin": "^4.3.0",
     "inquirer": "^7.1.0",
-    "tslib": "^1.13.0"
+    "tslib": "^1.13.0",
+    "webpack": "^4.43.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
@@ -25,6 +30,9 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.17.21",
     "@types/semver": "^7.2.0",
+    "@types/webpack": "^4.41.13",
+    "@types/webpack-dev-server": "^3.11.0",
+    "@types/webpack-merge": "^4.1.5",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
