@@ -19,7 +19,7 @@ $ npm install -g @freelog/freelog-scripts
 $ freelog-scripts COMMAND
 running command...
 $ freelog-scripts (-v|--version|version)
-@freelog/freelog-scripts/0.0.5 darwin-x64 node-v12.16.3
+@freelog/freelog-scripts/0.0.6 darwin-x64 node-v12.16.3
 $ freelog-scripts --help [COMMAND]
 USAGE
   $ freelog-scripts COMMAND
@@ -48,7 +48,7 @@ EXAMPLE
   $ freelog-scripts build
 ```
 
-_See code: [src/commands/build.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.5/src/commands/build.ts)_
+_See code: [src/commands/build.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.6/src/commands/build.ts)_
 
 ## `freelog-scripts getenv`
 
@@ -63,7 +63,7 @@ EXAMPLE
   generate page template success
 ```
 
-_See code: [src/commands/getenv.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.5/src/commands/getenv.ts)_
+_See code: [src/commands/getenv.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.6/src/commands/getenv.ts)_
 
 ## `freelog-scripts help [COMMAND]`
 
@@ -94,7 +94,7 @@ EXAMPLE
   $ freelog-scripts login
 ```
 
-_See code: [src/commands/login.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.5/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.6/src/commands/login.ts)_
 
 ## `freelog-scripts release`
 
@@ -108,7 +108,7 @@ EXAMPLE
   $ freelog-scripts release
 ```
 
-_See code: [src/commands/release.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.5/src/commands/release.ts)_
+_See code: [src/commands/release.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.6/src/commands/release.ts)_
 
 ## `freelog-scripts start`
 
@@ -123,7 +123,7 @@ EXAMPLE
   generate page template success
 ```
 
-_See code: [src/commands/start.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.5/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.6/src/commands/start.ts)_
 
 ## `freelog-scripts upload`
 
@@ -132,5 +132,5 @@ USAGE
   $ freelog-scripts upload
 ```
 
-_See code: [src/commands/upload.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.5/src/commands/upload.ts)_
+_See code: [src/commands/upload.ts](https://github.com/freelogfe/freelogfe-lib-repos/blob/v0.0.6/src/commands/upload.ts)_
 <!-- commandsstop -->

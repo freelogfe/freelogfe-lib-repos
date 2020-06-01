@@ -38,6 +38,13 @@ export default {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
+      {
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-react']
+        },
+      },
     ],
   },
   plugins: [
