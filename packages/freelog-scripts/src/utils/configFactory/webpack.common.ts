@@ -1,3 +1,5 @@
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
 export default {
   entry: {
     app: './src/index.js',
@@ -32,6 +34,13 @@ export default {
           },
         ],
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
     ],
   },
+  plugins: [
+    new VueLoaderPlugin(),
+  ],
 };

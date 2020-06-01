@@ -18,7 +18,10 @@ export default merge(common, {
     open: true,
     port: 3000,
     proxy: {
-      '/v1': 'http://qi.testfreelog.com'
+      '/v1': {
+        changeOrigin: true,
+        target: 'http://qi.testfreelog.com'
+      },
     }
   },
   plugins: [
@@ -26,6 +29,11 @@ export default merge(common, {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       title: 'Production',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development'),
+      },
     }),
   ],
 });

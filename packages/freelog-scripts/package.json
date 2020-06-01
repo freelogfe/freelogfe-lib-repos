@@ -17,6 +17,8 @@
     "html-webpack-plugin": "^4.3.0",
     "inquirer": "^7.1.0",
     "tslib": "^1.13.0",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
