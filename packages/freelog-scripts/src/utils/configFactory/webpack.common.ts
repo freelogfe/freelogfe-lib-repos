@@ -46,7 +46,9 @@ export default {
         options: {
           presets: [
             '@babel/preset-react',
-
+            {
+              development: process.env.BABEL_ENV === "development",
+            },
           ]
         },
       },
