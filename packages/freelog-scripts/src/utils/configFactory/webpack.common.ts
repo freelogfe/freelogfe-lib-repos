@@ -1,8 +1,10 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+import * as fs from 'fs';
+import * as webpack from 'webpack';
 
 export default {
   entry: {
-    app: './src/index.js',
+    app: fs.existsSync('tsconfig.json') ? './src/index.tsx' : './src/index.js',
   },
   module: {
     rules: [
@@ -42,7 +44,10 @@ export default {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-react']
+          presets: [
+            '@babel/preset-react',
+
+          ]
         },
       },
     ],
@@ -50,4 +55,8 @@ export default {
   plugins: [
     new VueLoaderPlugin(),
   ],
+  mode: 'production',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
 };
