@@ -1,6 +1,6 @@
 {
   "name": "@freelog/freelog-scripts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "freelog-scripts": "./bin/run"
