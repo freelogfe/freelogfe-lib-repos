@@ -18,4 +18,5 @@ export default merge(common, {
     filename: 'bundle.js',
     path: path.resolve(process.cwd(), 'build'),
   },
+  mode: 'production',
 });

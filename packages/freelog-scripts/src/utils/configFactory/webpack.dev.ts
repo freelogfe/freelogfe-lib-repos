@@ -36,4 +36,5 @@ export default merge(common, {
       },
     }),
   ],
+  mode: 'development',
 });
