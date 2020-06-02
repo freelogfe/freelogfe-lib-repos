@@ -55,7 +55,7 @@ export default {
   plugins: [
     new VueLoaderPlugin(),
   ],
-  mode: 'production',
+  // mode: 'production',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
