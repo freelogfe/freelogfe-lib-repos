@@ -92,16 +92,17 @@ export async function getCookies(forceLogin: boolean = false): Promise<string> {
     return JSON.parse(fs.readFileSync(authInfoPath, 'utf-8')).cookies;
   }
 
-  const content: any = await login();
-  return JSON.parse(content).cookies;
+  await login();
+  // console.log(content, 'content');
+  return await getCookies();
 }
 
-export async function getUserInfo(forceLogin: boolean = false) {
+export async function getUserInfo(forceLogin: boolean = false): Promise<any> {
 
   if (fs.existsSync(authInfoPath) && !forceLogin) {
     return JSON.parse(fs.readFileSync(authInfoPath, 'utf-8')).userInfo;
   }
 
-  const content: any = await login();
-  return JSON.parse(content).userInfo;
+  await login();
+  return await getUserInfo();
 }
