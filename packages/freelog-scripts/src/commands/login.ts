@@ -94,7 +94,7 @@ export async function getCookies(forceLogin: boolean = false): Promise<string> {
 
   await login();
   // console.log(content, 'content');
-  return await getCookies();
+  return getCookies();
 }
 
 export async function getUserInfo(forceLogin: boolean = false): Promise<any> {
@@ -104,5 +104,5 @@ export async function getUserInfo(forceLogin: boolean = false): Promise<any> {
   }
 
   await login();
-  return await getUserInfo();
+  return getUserInfo();
 }
