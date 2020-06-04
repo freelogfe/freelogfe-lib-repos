@@ -1,5 +1,6 @@
 import {Command, flags} from '@oclif/command';
 import * as webpack from 'webpack';
+// import cli from 'cli-ux'
 import * as WebpackDevServer from 'webpack-dev-server';
 import configFactory from '../utils/configFactory';
 
@@ -37,8 +38,9 @@ function run() {
       return console.error(err);
     }
 
-    const open = require('open');
-    await open('http://localhost:9010/');
+    // cli.open('http://localhost:' + config.devServer.port);
+    // const open = require('open');
+    // await open('http://localhost:9010/');
   });
 }
 
