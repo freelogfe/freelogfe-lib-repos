@@ -5,6 +5,7 @@ import * as fs from 'fs-extra';
 import cli from 'cli-ux';
 
 import download from './download';
+import question from './question';
 
 class CreateFreelogApp extends Command {
   static description = 'describe the command here';
@@ -25,11 +26,13 @@ class CreateFreelogApp extends Command {
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'freelog-'));
     try {
       await download('freelogfe/freelog-widget-template', tmpDir);
+      const template = await question(tmpDir);
+      console.log(template, 'template');
     } catch (e) {
       console.error(e);
     } finally {
       await cli.wait(3000);
-      fs.removeSync(tmpDir);
+      // fs.removeSync(tmpDir);
     }
   }
 }
