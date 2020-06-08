@@ -1,6 +1,6 @@
 {
   "name": "create-freelog-app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "create-freelog-app": "./bin/run"
@@ -10,12 +10,15 @@
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",
     "@oclif/plugin-help": "^3.1.0",
+    "download-git-repo": "^3.0.2",
+    "fs-extra": "^9.0.1",
     "tslib": "^1.13.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.22.2",
     "@oclif/test": "^1.2.6",
     "@types/chai": "^4.2.11",
+    "@types/fs-extra": "^9.0.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.17.24",
     "chai": "^4.2.0",
