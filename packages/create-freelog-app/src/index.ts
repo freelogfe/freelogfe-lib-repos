@@ -6,6 +6,7 @@ import * as fs from 'fs-extra';
 import download from './download';
 import question from './question';
 import generate from './generate';
+import install from './install';
 
 class CreateFreelogApp extends Command {
   static description = 'describe the command here';
@@ -24,14 +25,17 @@ class CreateFreelogApp extends Command {
 
   async run() {
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'freelog-'));
+
     try {
       await download('freelogfe/freelog-widget-template', tmpDir);
       const answers = await question(tmpDir);
+      const projectDir = path.join(process.cwd(), answers.name);
       await generate(
         path.join(tmpDir, 'templates', answers.templateType),
-        path.join(process.cwd(), answers.name),
+        projectDir,
         answers
       );
+      await install(projectDir);
     } catch (e) {
       console.error(e);
     } finally {
