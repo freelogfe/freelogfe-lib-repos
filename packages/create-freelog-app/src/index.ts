@@ -2,10 +2,10 @@ import {Command, flags} from '@oclif/command';
 import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs-extra';
-import cli from 'cli-ux';
 
 import download from './download';
 import question from './question';
+import generate from './generate';
 
 class CreateFreelogApp extends Command {
   static description = 'describe the command here';
@@ -27,11 +27,14 @@ class CreateFreelogApp extends Command {
     try {
       await download('freelogfe/freelog-widget-template', tmpDir);
       const answers = await question(tmpDir);
-      console.log(answers, 'answers');
+      await generate(
+        path.join(tmpDir, 'templates', answers.templateType),
+        path.join(process.cwd(), answers.name),
+        answers
+      );
     } catch (e) {
       console.error(e);
     } finally {
-      await cli.wait(3000);
       fs.removeSync(tmpDir);
     }
   }
