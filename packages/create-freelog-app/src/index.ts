@@ -26,13 +26,13 @@ class CreateFreelogApp extends Command {
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'freelog-'));
     try {
       await download('freelogfe/freelog-widget-template', tmpDir);
-      const template = await question(tmpDir);
-      console.log(template, 'template');
+      const answers = await question(tmpDir);
+      console.log(answers, 'answers');
     } catch (e) {
       console.error(e);
     } finally {
       await cli.wait(3000);
-      // fs.removeSync(tmpDir);
+      fs.removeSync(tmpDir);
     }
   }
 }
