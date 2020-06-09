@@ -10,7 +10,7 @@ export default function (cwd: string) {
     ];
 
     const child = spawn(command, args, {stdio: 'inherit', cwd});
-    child.on('close', code => {
+    child.on('close', (code: number) => {
       if (code !== 0) {
         reject({
           command: `${command} ${args.join(' ')}`,

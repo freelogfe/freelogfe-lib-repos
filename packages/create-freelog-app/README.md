@@ -19,7 +19,7 @@ $ npm install -g create-freelog-app
 $ create-freelog-app COMMAND
 running command...
 $ create-freelog-app (-v|--version|version)
-create-freelog-app/0.0.1 darwin-x64 node-v12.16.3
+create-freelog-app/0.0.2 darwin-x64 node-v12.16.3
 $ create-freelog-app --help [COMMAND]
 USAGE
   $ create-freelog-app COMMAND

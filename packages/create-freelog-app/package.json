@@ -1,6 +1,6 @@
 {
   "name": "create-freelog-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "create-freelog-app": "./bin/run"
@@ -11,6 +11,7 @@
     "@oclif/config": "^1.15.1",
     "@oclif/plugin-help": "^3.1.0",
     "consolidate": "^0.15.1",
+    "cross-spawn": "^7.0.3",
     "download-git-repo": "^3.0.2",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.1.0",
@@ -22,11 +23,12 @@
     "@oclif/test": "^1.2.6",
     "@types/chai": "^4.2.11",
     "@types/consolidate": "^0.14.0",
+    "@types/cross-spawn": "^6.0.2",
     "@types/fs-extra": "^9.0.1",
     "@types/inquirer": "^6.5.0",
     "@types/metalsmith": "^2.3.0",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^10.17.24",
+    "@types/node": "^12.12.45",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-oclif": "^3.1.0",
