@@ -1,6 +1,4 @@
 import cli from 'cli-ux';
-// import * as path from 'path';
-// import download from 'download-git-repo';
 
 export default function download(tpl: string, src: string) {
   return new Promise((resolve, reject) => {
