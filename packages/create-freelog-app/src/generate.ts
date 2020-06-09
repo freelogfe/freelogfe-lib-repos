@@ -2,16 +2,20 @@ import * as  Metalsmith from 'metalsmith';
 import {handlebars} from 'consolidate';
 
 export default function (source: string, destination: string, metadata: any) {
-  return Metalsmith(__dirname)
-    .source(source)
-    .destination(destination)
-    .metadata(metadata)
-    .use(template)
-    .build(function (err: any) {
-      if (err) {
-        throw err;
-      }
-    });
+  return new Promise((resolve, reject) => {
+    Metalsmith(__dirname)
+      .source(source)
+      .destination(destination)
+      .metadata(metadata)
+      .use(template)
+      .build(function (err: any) {
+        if (err) {
+          reject(err);
+          throw err;
+        }
+        resolve();
+      });
+  })
 };
 
 function template(files: any, metalsmith: any, done: any) {

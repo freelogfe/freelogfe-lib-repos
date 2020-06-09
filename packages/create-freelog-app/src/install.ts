@@ -1,20 +1,23 @@
-import {exec} from 'child_process';
+import * as spawn from 'cross-spawn';
 
 export default function (cwd: string) {
   return new Promise((resolve, reject) => {
-    exec('npm install',
-      {cwd},
-      (error: any, stdout: any, stderr: any) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          reject(error);
-          return;
-        }
+    let command: string = 'npm';
+    let args: string[] = [
+      'install',
+      '--loglevel',
+      'error',
+    ];
 
-        console.log(`stdout: ${stdout}`);
-        console.error(`stderr: ${stderr}`);
-        resolve();
+    const child = spawn(command, args, {stdio: 'inherit', cwd});
+    child.on('close', code => {
+      if (code !== 0) {
+        reject({
+          command: `${command} ${args.join(' ')}`,
+        });
+        return;
       }
-    );
+      resolve();
+    });
   });
 };
