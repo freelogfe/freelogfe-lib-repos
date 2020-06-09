@@ -1,5 +1,6 @@
 import * as  Metalsmith from 'metalsmith';
-import {handlebars} from 'consolidate';
+// import {handlebars} from 'consolidate';
+import * as Mustache from 'mustache';
 
 export default function (source: string, destination: string, metadata: any) {
   return new Promise((resolve, reject) => {
@@ -24,12 +25,14 @@ function template(files: any, metalsmith: any, done: any) {
 
   for (const file of keys) {
     var str = files[file].contents.toString();
-    handlebars.render(str, metadata, function (err: any, res: any) {
-      if (err) {
-        return done(err);
-      }
-      files[file].contents = new Buffer(res);
-    });
+    // handlebars.render(str, metadata, function (err: any, res: any) {
+    //   if (err) {
+    //     return done(err);
+    //   }
+    //   files[file].contents = new Buffer(res);
+    // });
+    const output = Mustache.render(str, metadata);
+    files[file].contents = new Buffer(output);
   }
   done();
 }
