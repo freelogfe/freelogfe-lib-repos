@@ -8,17 +8,13 @@ export default function (env: 'production' | 'development' = 'development') {
       const configFunc: any = require(path.join(process.cwd(), 'config/webpack.prod.js'));
       return configFunc(prodConfig);
     } catch (e) {
-
       return prodConfig;
     }
   }
   try {
     const configFunc: any = require(path.join(process.cwd(), 'config/webpack.dev.js'));
-    console.log(path.join(process.cwd(), 'config/webpack.dev.js'), '#WSDFSDFSDFSDFSDF');
-    console.log(configFunc, 'configFuncconfigFuncconfigFuncconfigFuncconfigFunc');
     return configFunc(devConfig);
   } catch (e) {
-    console.error(e, ' EEEEEEEEEEEEE');
     return devConfig;
   }
 }
