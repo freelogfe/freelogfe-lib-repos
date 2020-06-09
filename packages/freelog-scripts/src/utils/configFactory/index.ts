@@ -1,9 +1,24 @@
 import devConfig from './webpack.dev';
 import prodConfig from './webpack.prod';
+import * as path from 'path';
 
 export default function (env: 'production' | 'development' = 'development') {
   if (env === 'production') {
-    return prodConfig;
+    try {
+      const configFunc: any = require(path.join(process.cwd(), 'config/webpack.prod.js'));
+      return configFunc(prodConfig);
+    } catch (e) {
+
+      return prodConfig;
+    }
   }
-  return devConfig;
+  try {
+    const configFunc: any = require(path.join(process.cwd(), 'config/webpack.dev.js'));
+    console.log(path.join(process.cwd(), 'config/webpack.dev.js'), '#WSDFSDFSDFSDFSDF');
+    console.log(configFunc, 'configFuncconfigFuncconfigFuncconfigFuncconfigFunc');
+    return configFunc(devConfig);
+  } catch (e) {
+    console.error(e, ' EEEEEEEEEEEEE');
+    return devConfig;
+  }
 }
