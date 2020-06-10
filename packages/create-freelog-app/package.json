@@ -46,7 +46,7 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/liu-kai-github/create-freelog-app",
+  "homepage": "https://github.com/freelogfe/freelogfe-lib-repos/blob/master/packages/create-freelog-app/README.md",
   "keywords": [
     "oclif"
   ],
@@ -55,7 +55,7 @@
   "oclif": {
     "bin": "create-freelog-app"
   },
-  "repository": "liu-kai-github/create-freelog-app",
+  "repository": "https://github.com/freelogfe/freelogfe-lib-repos/tree/master/packages/create-freelog-app",
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b",
