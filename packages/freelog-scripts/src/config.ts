@@ -11,4 +11,5 @@ export const projectPackage = JSON.parse(fs.readFileSync('package.json', 'utf-8'
 export const colorLog = {
   success: (str: string) => console.log(chalkPipe('green')(str)),
   error: (str: string) => console.log(chalkPipe('red')(str)),
+  warning: (str: string) => console.log(chalkPipe('orange')(str)),
 };

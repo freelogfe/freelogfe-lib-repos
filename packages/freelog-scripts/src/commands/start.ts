@@ -3,6 +3,8 @@ import * as webpack from 'webpack';
 // import cli from 'cli-ux'
 import * as WebpackDevServer from 'webpack-dev-server';
 import configFactory from '../utils/configFactory';
+import * as net from 'net';
+import {colorLog} from '../config';
 
 export default class Hello extends Command {
   static description = 'start dev server';
@@ -28,20 +30,43 @@ generate page template success
   }
 }
 
-function run() {
+async function run() {
   const config: any = configFactory();
   const compiler = webpack(config);
   const devServer = new WebpackDevServer(compiler, config.devServer);
 
-  devServer.listen(config.devServer.port, '', async (err) => {
-    if (err) {
-      return console.error(err);
-    }
+  try {
+    const port: unknown = await getAvailablePort(config.devServer.port) || 3000;
+    devServer.listen(Number(port), '', async (err) => {
+      if (err) {
+        return colorLog.error(JSON.stringify(err));
+      }
+    });
+  } catch (e) {
+    colorLog.error(JSON.stringify(e));
+  }
 
-    // cli.open('http://localhost:' + config.devServer.port);
-    // const open = require('open');
-    // await open('http://localhost:9010/');
-  });
 }
 
+// function portIsOccupied(port) {
+function getAvailablePort(port: number) {
+
+  return new Promise(((resolve, reject) => {
+    const server = net.createServer().listen(port);
+
+    server.on('listening', function () {
+      server.close();
+      resolve(port);
+    });
+
+    server.on('error', function (err: any) {
+      if (err.code === 'EADDRINUSE') {
+        resolve(getAvailablePort(port + 1));
+        return;
+      }
+      reject(err);
+    });
+  }));
+
+}
 
