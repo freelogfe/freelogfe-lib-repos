@@ -11,18 +11,16 @@ export default {
       {
         test: /\.css$/,
         use: [
-          'raw-loader',
+          {loader: 'style-loader'},
+          {loader: 'css-loader'},
         ],
       },
       {
         test: /\.less$/,
         use: [
-          {
-            loader: 'raw-loader',
-          },
-          {
-            loader: "less-loader",
-          },
+          {loader: 'style-loader'},
+          {loader: 'css-loader'},
+          {loader: 'less-loader'},
         ],
       },
       {

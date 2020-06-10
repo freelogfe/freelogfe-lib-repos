@@ -27,8 +27,9 @@ generate page template success
     const {data: templateString} = await axios.get(aliyuncsPagebuildUrl);
 
     const html = templateString
-      .replace(/(?<=<div id="js-page-container">)[\s\S]*?(?=<\/div>)/, `<%= require('html-loader!./them-template.html') %>`)
-      .replace('{{authInfoFragment | safe}}', `<%= require('html-loader!./__auth_info__.html') %>`)
+      // .replace(/(?<=<div id="js-page-container">)[\s\S]*?(?=<\/div>)/, `<%= require('html-loader!./them-template.html') %>`)
+      // .replace(`<!-- pbFragment -->`, `<%= require('html-loader!./them-template.html') %>`)
+      .replace(`<!-- authInfo -->`, `<%= require('html-loader!./__auth_info__.html') %>`)
     ;
 
     if (!fs.existsSync('public') || fs.statSync('public').isFile()) {

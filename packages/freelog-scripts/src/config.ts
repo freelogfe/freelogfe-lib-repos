@@ -4,7 +4,7 @@ import * as chalkPipe from 'chalk-pipe';
 
 export const serverOrigin: string = 'http://qi.testfreelog.com';
 
-export const aliyuncsPagebuildUrl: string = 'http://test-frcdn.oss-cn-shenzhen.aliyuncs.com/pagebuild/index.html';
+export const aliyuncsPagebuildUrl: string = 'http://test-frcdn.oss-cn-shenzhen.aliyuncs.com/pagebuild/index.dev.html';
 
 export const projectPackage = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
