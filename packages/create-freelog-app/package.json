@@ -5,7 +5,7 @@
   "bin": {
     "create-freelog-app": "./bin/run"
   },
-  "bugs": "https://github.com/liu-kai-github/create-freelog-app/issues",
+  "bugs": "https://github.com/freelogfe/freelogfe-lib-repos/issues",
   "dependencies": {
     "@oclif/command": "^1.6.1",
     "@oclif/config": "^1.15.1",

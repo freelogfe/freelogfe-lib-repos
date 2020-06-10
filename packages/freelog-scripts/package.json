@@ -5,7 +5,7 @@
   "bin": {
     "freelog-scripts": "./bin/run"
   },
-  "bugs": "https://github.com/liu-kai-github/freelog-scripts/issues",
+  "bugs": "https://github.com/freelogfe/freelogfe-lib-repos/issues",
   "dependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
