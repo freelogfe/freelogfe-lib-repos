@@ -1,6 +1,6 @@
 {
   "name": "@freelog/freelog-scripts",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "freelog-scripts": "./bin/run"
@@ -23,7 +23,6 @@
     "html-webpack-plugin": "^4.3.0",
     "inquirer": "^7.1.0",
     "less-loader": "^6.1.0",
-    "raw-loader": "^4.0.1",
     "style-loader": "^1.2.1",
     "tslib": "^1.13.0",
     "url-loader": "^4.1.0",
