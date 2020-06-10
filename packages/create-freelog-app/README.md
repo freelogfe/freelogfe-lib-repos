@@ -1,4 +1,4 @@
-create-freelog-app
+Create Freelog App
 ==================
 
 
@@ -9,24 +9,18 @@ create-freelog-app
 [![License](https://img.shields.io/npm/l/create-freelog-app.svg)](https://github.com/liu-kai-github/create-freelog-app/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+<!-- * [Usage](#usage) -->
+<!-- * [Commands](#commands) -->
 <!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g create-freelog-app
-$ create-freelog-app COMMAND
-running command...
-$ create-freelog-app (-v|--version|version)
-create-freelog-app/0.0.6 darwin-x64 node-v12.16.3
-$ create-freelog-app --help [COMMAND]
-USAGE
-  $ create-freelog-app COMMAND
-...
+$ npx create-react-app
+$ cd my-app
+$ npm start
 ```
 <!-- usagestop -->
-# Commands
+<!-- # Commands -->
 <!-- commands -->
 
 <!-- commandsstop -->
