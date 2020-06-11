@@ -1,9 +1,13 @@
 import {Command, flags} from '@oclif/command';
 import axios from 'axios';
-import * as fs from 'fs';
+// import * as fs from 'fs';
+import * as fs from 'fs-extra';
 import {aliyuncsPagebuildUrl, colorLog} from '../config';
+import * as path from "path";
+import * as os from "os";
+import {setStorage} from '../utils/storage';
 
-export default class Hello extends Command {
+export default class Getenv extends Command {
   static description = 'generate page template';
 
   static examples = [
@@ -23,28 +27,40 @@ generate page template success
   // static args = [{name: 'file'}];
 
   async run() {
-
-    const {data: templateString} = await axios.get(aliyuncsPagebuildUrl);
-
-    const html = templateString
-      // .replace(/(?<=<div id="js-page-container">)[\s\S]*?(?=<\/div>)/, `<%= require('html-loader!./them-template.html') %>`)
-      // .replace(`<!-- pbFragment -->`, `<%= require('html-loader!./them-template.html') %>`)
-      .replace(`<!-- authInfo -->`, `<%= require('html-loader!./__auth_info__.html') %>`)
-    ;
-
-    if (!fs.existsSync('public') || fs.statSync('public').isFile()) {
-      fs.mkdirSync('public');
-    }
-
-    fs.writeFileSync('public/index.html', html, 'utf-8');
-    colorLog.success('generate page template success');
-
-    // const {args, flags} = this.parse(Hello)
-    //
-    // const name = flags.name ?? 'world'
-    // this.log(`hello ${name} from ./src/commands/hello.ts`)
-    // if (args.file && flags.force) {
-    //   this.log(`you input --force and --file: ${args.file}`)
-    // }
+    await run();
   }
+}
+
+export async function run() {
+  const {data: templateString} = await axios.get(aliyuncsPagebuildUrl);
+
+  const authInfo = {
+    "__auth_node_id__": 80000041,
+    "__auth_node_name__": "video1234",
+    "__page_build_id": "5de4ad76a7feab00202da8ec",
+    "__page_build_entity_id": "5de4ad76a7fe",
+    "__page_build_sub_releases": [{
+      "id": "5de4acd4cb81ea002b223ee3",
+      "name": "12345676789/freelog-video-player",
+      "type": "release",
+      "resourceType": "widget"
+    }]
+  };
+  const html = templateString
+    .replace(`<!-- authInfo -->`, `<script>const authInfo = ${JSON.stringify(authInfo)}</script>`);
+
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'freelog-'));
+  process.on('beforeExit', function () {
+    fs.removeSync(tmpDir);
+  });
+  process.on('SIGINT', function () {
+    fs.removeSync(tmpDir);
+    process.exit();
+  });
+
+  const htmlPath = path.join(tmpDir, 'index.html');
+  fs.writeFileSync(htmlPath, html, 'utf-8');
+  setStorage({templatePath: htmlPath});
+  colorLog.success('generate page template success');
+  return htmlPath;
 }

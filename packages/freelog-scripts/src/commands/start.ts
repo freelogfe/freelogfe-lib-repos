@@ -5,6 +5,7 @@ import * as WebpackDevServer from 'webpack-dev-server';
 import configFactory from '../utils/configFactory';
 import * as net from 'net';
 import {colorLog} from '../config';
+import {run as getenv} from './getenv';
 
 export default class Hello extends Command {
   static description = 'start dev server';
@@ -31,6 +32,7 @@ generate page template success
 }
 
 async function run() {
+  await getenv();
   const config: any = configFactory();
   const compiler = webpack(config);
   const devServer = new WebpackDevServer(compiler, config.devServer);

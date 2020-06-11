@@ -13,3 +13,10 @@ export const colorLog = {
   error: (str: string) => console.log(chalkPipe('red')(str)),
   warning: (str: string) => console.log(chalkPipe('orange')(str)),
 };
+
+export const devServerProxy = {
+  '/v1': {
+    changeOrigin: true,
+    target: 'http://qi.testfreelog.com'
+  },
+};

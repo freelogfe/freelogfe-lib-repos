@@ -1,6 +1,8 @@
 import devConfig from './webpack.dev';
 import prodConfig from './webpack.prod';
 import * as path from 'path';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import {getStorage} from '../storage';
 
 export default function (env: 'production' | 'development' = 'development') {
   if (env === 'production') {
@@ -11,10 +13,17 @@ export default function (env: 'production' | 'development' = 'development') {
       return prodConfig;
     }
   }
+  const webpackConfig = {
+    ...devConfig,
+  };
+
+  webpackConfig.plugins?.push(new HtmlWebpackPlugin({
+    template: getStorage().templatePath,
+  }));
   try {
     const configFunc: any = require(path.join(process.cwd(), 'config/webpack.dev.js'));
-    return configFunc(devConfig);
+    return configFunc(webpackConfig);
   } catch (e) {
-    return devConfig;
+    return webpackConfig;
   }
 }
