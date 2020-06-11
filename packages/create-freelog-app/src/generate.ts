@@ -32,7 +32,7 @@ function template(files: any, metalsmith: any, done: any) {
     //   files[file].contents = new Buffer(res);
     // });
     const output = Mustache.render(str, metadata);
-    files[file].contents = new Buffer(output);
+    files[file].contents = Buffer.from(output);
   }
   done();
 }
