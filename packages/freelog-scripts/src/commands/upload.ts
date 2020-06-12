@@ -8,7 +8,7 @@ import {getCookies, getUserInfo} from './login';
 import {serverOrigin, projectPackage, colorLog} from '../config';
 
 
-export default class Hello extends Command {
+export default class Uploader extends Command {
   static description = 'upload and create resource';
 
   static examples = [

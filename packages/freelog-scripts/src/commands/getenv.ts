@@ -7,7 +7,7 @@ import * as path from "path";
 import * as os from "os";
 import {setStorage} from '../utils/storage';
 
-export default class Getenv extends Command {
+export default class EnvGetter extends Command {
   static description = 'generate page template';
 
   static examples = [

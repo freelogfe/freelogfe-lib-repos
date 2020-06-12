@@ -2,7 +2,7 @@ import {Command} from '@oclif/command';
 import * as webpack from 'webpack';
 import configFactory from '../utils/configFactory';
 
-export default class Hello extends Command {
+export default class Builder extends Command {
   static description = 'build widget';
 
   static examples = [

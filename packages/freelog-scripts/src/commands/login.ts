@@ -19,7 +19,7 @@ const questions = [
   },
 ];
 
-export default class Hello extends Command {
+export default class Logon extends Command {
   static description = 'freelog login';
 
   static examples = [
