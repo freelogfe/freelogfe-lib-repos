@@ -50,7 +50,7 @@ export default function (src: string) {
       type: 'string',
       required: true,
       label: 'widget description',
-      default: 'A freelog widget'
+      default: 'Freelog App'
     },
     {
       name: 'author',
