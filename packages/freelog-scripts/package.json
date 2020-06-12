@@ -1,6 +1,6 @@
 {
   "name": "@freelog/freelog-scripts",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": "liu-kai @liu-kai-github",
   "bin": {
     "freelog-scripts": "./bin/run"
@@ -41,7 +41,7 @@
     "@types/fs-extra": "^9.0.1",
     "@types/inquirer": "^6.5.0",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^10.17.21",
+    "@types/node": "^12.12.45",
     "@types/semver": "^7.2.0",
     "@types/webpack": "^4.41.13",
     "@types/webpack-dev-server": "^3.11.0",
