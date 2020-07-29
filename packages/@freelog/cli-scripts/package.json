@@ -1,0 +1,75 @@
+{
+  "name": "@freelog/freelog-scripts",
+  "version": "0.0.18",
+  "author": "liu-kai @liu-kai-github",
+  "bin": {
+    "freelog-scripts": "./bin/run"
+  },
+  "bugs": "https://github.com/freelogfe/freelogfe-lib-repos/issues",
+  "dependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@oclif/command": "^1.6.1",
+    "@oclif/config": "^1.15.1",
+    "@oclif/plugin-help": "^3.0.1",
+    "axios": "^0.19.2",
+    "chalk-pipe": "^4.0.0",
+    "form-data": "^3.0.0",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^7.1.0",
+    "tslib": "^1.13.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.22.2",
+    "@oclif/test": "^1.2.6",
+    "@types/chai": "^4.2.11",
+    "@types/chalk-pipe": "^2.0.0",
+    "@types/fs-extra": "^9.0.1",
+    "@types/inquirer": "^6.5.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.45",
+    "@types/semver": "^7.2.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "eslint-config-oclif-typescript": "^0.1.0",
+    "globby": "^10.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1",
+    "semver": "^7.3.2",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/freelogfe/freelogfe-lib-repos/tree/master/packages/freelog-scripts#readme",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.ts",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "freelog-scripts",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "https://github.com/freelogfe/freelogfe-lib-repos",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "publish": "npm publish --access public",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}

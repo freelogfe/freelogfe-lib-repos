@@ -206,7 +206,7 @@ class MarkdownParser {
         
         
         return (self._opts.headingRender && self._opts.headingRender(slug)) ||
-          `<h${level} id="${slug}"><a href="#${slug}" class="anchor"></a></a>${text}</h${level}>`
+          `<h${level} id="${slug}"><a href="#${slug}" class="md-anchor"></a></a>${text}</h${level}>`
       }
     } catch (error) {
       console.log(error)
