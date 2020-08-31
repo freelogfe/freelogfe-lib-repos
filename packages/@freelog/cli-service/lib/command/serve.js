@@ -1,5 +1,5 @@
 
-async function serve() {
+async function serve(options) {
 	const fse = require('fs-extra')
 	const path = require('path')
 	const chalk = require('chalk')
@@ -11,7 +11,7 @@ async function serve() {
   const CWD = process.cwd()
   const webpackConfig = require(path.resolve(CWD, 'config/webpack.config.js'))
 
-  const devServerConfig = getDevServerConfig(webpackConfig.devServer)
+  const devServerConfig = getDevServerConfig(webpackConfig.devServer, options)
   devServerConfig.port = await getAvailablePort(devServerConfig.port)
   
   const compiler = webpack(webpackConfig)

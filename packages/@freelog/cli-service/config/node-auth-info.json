@@ -1,7 +1,66 @@
 {
-	"__auth_node_id__": 80000057,
-	"__auth_node_name__": "MD文档",
-	"__page_build_id": "5db6dac9ab5297001fa15f06",
+	"__auth_node_id__": 80000055,
+	"__auth_node_name__": "markdown阅读",
+	"__page_build_id": "5db6dac9ab5297001fa15f0a",
 	"__page_build_entity_id": "5db6dac9ab52",
-	"__page_build_sub_releases": []
+	"__auth_error_info__": {
+		"isAuth": false,
+		"authCode": 505,
+		"data": {
+			"presentableInfo": {
+				"presentableId": "5db6dac9ab5297001fa15f0a",
+				"presentableName": "PB-markdown阅读",
+				"intro": "",
+				"nodeId": 80000055,
+				"policies": [
+					{
+						"authorizedObjects": [
+							{
+								"userType": "GROUP",
+								"users": [
+									"PUBLIC"
+								]
+							}
+						],
+						"policyName": "免费策略",
+						"status": 0,
+						"policyText": "for public:\n  initial:\n    active\n    terminate",
+						"policyId": "1695c7481f58acefe31c967598000d53"
+					},
+					{
+						"authorizedObjects": [
+							{
+								"userType": "GROUP",
+								"users": [
+									"PUBLIC"
+								]
+							}
+						],
+						"policyName": "charge policy",
+						"status": 1,
+						"policyText": "for public:\n  escrow account acct\n  custom event acceptor.customEvent\n\n  initial:\n    recontractable\n    proceed to auth on acct exceed 1 feather\n  auth:\n    presentable\n    recontractable\n    active\n    proceed to refund on acct.confiscated\n  refund:\n    recontractable\n    proceed to finish on acct.refunded\n  finish:\n    recontractable\n    terminate",
+						"policyId": "fc233129ddebe24fc42fca9772c2d536"
+					}
+				],
+				"releaseInfo": {
+					"releaseId": "5da1744916d7cd0029d130f4",
+					"releaseName": "ww-zh/PB-markdown阅读",
+					"resourceType": "page_build",
+					"version": "0.1.4",
+					"intro": "",
+					"previewImages": [],
+					"versions": [
+						"0.1.0",
+						"0.1.1",
+						"0.1.2",
+						"0.1.3",
+						"0.1.4"
+					]
+				}
+			}
+		},
+		"errors": [],
+		"freelog-sub-dependencies": "W3siaWQiOiI1ZDQxMzgwYzcyMzY5NDAwMjllMGRlMDgiLCJuYW1lIjoid3ctemgvZnJlZWxvZy1hbHBoYS1tYXJrZG93bnZpZXdlciIsInR5cGUiOiJyZWxlYXNlIiwicmVzb3VyY2VUeXBlIjoid2lkZ2V0In1d",
+		"freelog-entity-nid": "5db6dac9ab52"
+	}
 }

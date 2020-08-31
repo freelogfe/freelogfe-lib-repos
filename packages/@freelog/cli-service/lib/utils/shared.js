@@ -50,7 +50,6 @@ exports.getLocalNodeAuthInfo = function() {
   const {  CONFIG_NODEAUTH_PATH } = require('../constant')
   const nodeAuthConfigPath = path.join(CWD, CONFIG_NODEAUTH_PATH)
   const _default = { 
-    __auth_user_id__: 0, 
     __auth_node_id__: 0, 
     __auth_node_name__: '', 
     __page_build_id: '', 
@@ -75,4 +74,37 @@ exports.fetchNodeAuthInfo = function(nodeDomain) {
       } 
       return res.data
     })
+}
+
+// 从cookie中获取用户授权信息
+exports.getUserInfoByCookie = function(cookies) {
+	var userInfo = null
+  const jwtStr = cookies['authInfo']
+
+	if(jwtStr != null) {
+		userInfo = parseJWT(jwtStr)
+	}
+	return userInfo
+}
+
+// 解析JWT获取用户信息对象
+function parseJWT(jwtStr) {
+	var userInfo = null
+	try {
+		const arr = jwtStr.split('.')
+    // userInfo = atob(arr[1]) 
+    userInfo = Buffer.from(arr[1],'base64').toString('utf-8')
+		userInfo = JSON.parse(userInfo)
+
+		Object.keys(userInfo).forEach(key=>{
+			if (['userName', 'nickname'].includes(key)) {
+				userInfo[key] = decodeURIComponent(userInfo[key])
+			}
+		})
+	}catch(e) {
+		console.log(e)
+		userInfo = null
+	}finally {
+		return userInfo
+	}
 }

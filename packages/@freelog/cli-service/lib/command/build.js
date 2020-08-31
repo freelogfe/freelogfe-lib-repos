@@ -35,7 +35,7 @@ module.exports = async (options) => {
       process.exit(1)
     }
 
-    console.log(chalk.cyan('  Build complete.\n'))
+    console.log(chalk.cyan('  Widget built successfully.\n'))
     spinner.stop()
   })
 }

@@ -20,12 +20,14 @@ program
 program
   .command('serve')
   .description('start local service for development and debugging')
-  .option('-d --domain <domain>', 'domain name of freelog node')
+  .option('--domain <domain>', 'domain name of freelog node')
+  .option('--internal', 'start local service for freelog internal development')
   .action(async (cmd) => {
     if (cmd['domain']) {
       await generateNodeAuthInfo(cmd['domain'])
     }
-    require('../lib/command/serve')()
+    const opts = { devMode: { internal: !!cmd['internal'] } }
+    require('../lib/command/serve')(opts)
   })
 
 program
