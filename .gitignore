@@ -10,4 +10,8 @@ run/
 .DS_Store
 *.swp
 dist/
+packages/**/dist/
 packages/freelog-scripts/oclif.manifest.json
+package-lock.json
+packages/**/package-lock.json
+

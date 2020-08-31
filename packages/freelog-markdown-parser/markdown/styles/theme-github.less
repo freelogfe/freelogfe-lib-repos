@@ -34,9 +34,8 @@
 }
 
 .markdown-body .anchor {
-  float: left;
-  line-height: 1;
-  margin-left: -20px;
+  position: relative;
+  margin-left: -4px;
   padding-right: 4px
 }
 
@@ -58,7 +57,7 @@
 }
 
 .markdown-body blockquote {
-  border-left: .25em solid #dfe2e5;
+  border-left: .25em solid #409EFF;
   color: #6a737d;
   padding: 0 1em
 }
@@ -126,7 +125,21 @@
 
 .markdown-body h3 {
   margin-top: 32px; 
-  font-size: 1.25em
+  font-size: 1.25em;
+}
+
+.markdown-body h3, .markdown-body h4 {
+  &:hover > a.anchor:before {
+    content: "#";
+    color: #258fb8;
+    position: absolute;
+    left: -1em;
+    margin-top: 0;
+    padding-right: 0.5em;
+    font-size: 1.25em;
+    line-height: 1;
+    font-weight: bold;
+  }
 }
 
 .markdown-body h4 {
@@ -143,8 +156,14 @@
   font-size: .85em
 }
 
-.markdown-body ol,.markdown-body ul {
-  padding-left: 2em; list-style: inherit;
+.markdown-body ol {
+  list-style-type: decimal;
+}
+.markdown-body ul {
+  list-style-type: disc;
+}
+.markdown-body ol, .markdown-body ul {
+  padding-left: 2em; 
 }
 
 .markdown-body ol.no-list,.markdown-body ul.no-list {
@@ -323,11 +342,12 @@
 }
 
 .markdown-body code,.markdown-body tt {
-  background-color: rgba(27,31,35,.05);
+  background-color: #f8f8f8;
+  color: #d63200;
+  padding: 3px 5px;
+  margin: 0 2px;
   border-radius: 3px;
   font-size: 85%;
-  margin: 0;
-  padding: .2em .4em
 }
 
 .markdown-body code br,.markdown-body tt br {
@@ -343,6 +363,7 @@
 }
 
 .markdown-body pre>code {
+  color: #525252;
   background: transparent;
   border: 0;
   font-size: 100%;
