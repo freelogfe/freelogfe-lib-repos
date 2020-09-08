@@ -1,13 +1,10 @@
+
+
 {
-  "presets": [
-    [
-      "env",
-      {
-        "modules": false
-      }
-    ]
-  ],
+  "presets": ["@babel/preset-env"],
   "plugins": [
-    "external-helpers"
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-classes",
+    "@babel/plugin-transform-async-to-generator"
   ]
 }

@@ -31,7 +31,8 @@ var baseOpts = {
     }),
     commonjs({
       include: ["node_modules/**"]
-    })
+    }),
+    uglify()
   ],
   watch: {
     include: 'markdown/**'

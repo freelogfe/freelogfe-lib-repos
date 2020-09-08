@@ -7,7 +7,7 @@
 $ npm i -g @freelog/freelog-ci
 ```
 
-- 在``~/.freelog`` 或 当前项目目录下创建 ``oss.conf.js``或``oss.conf.json``配置文件，内容如下
+- 在根目录``~/.freelog`` 或 当前项目目录下创建 ``oss.conf.js``或``oss.conf.json``配置文件，内容如下
 
 ```json
 {

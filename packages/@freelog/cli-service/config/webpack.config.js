@@ -60,7 +60,9 @@ module.exports = {
               limit: 8192,
               fallback: {
                 loader: 'file-loader',
-                name: 'assets/fonts/[name].[ext]'
+                options: {
+                  name: 'assets/fonts/[name].[ext]'
+                }
               }
             }
           }
@@ -75,7 +77,9 @@ module.exports = {
               limit: 8192,
               fallback: {
                 loader: 'file-loader',
-                name: 'assets/images/[name].[ext]'
+                options: {
+                  name: 'assets/images/[name].[ext]'
+                }
               }
             }
           }

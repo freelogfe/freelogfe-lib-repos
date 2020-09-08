@@ -21,7 +21,7 @@ module.exports = function getDevServerConfig(serverConfig = {}, options) {
     const _beforeHook = (app) => {
       app.use(cors({ origin: true, credentials: true }))
       app.use(cookieParser())
-      app.use('/v1', createProxyMiddleware({
+      app.use('/v1/', createProxyMiddleware({
           target: PROXY_QI_TARGET,
           // true/false, if you want to verify the SSL Certs
           secure: false, 
