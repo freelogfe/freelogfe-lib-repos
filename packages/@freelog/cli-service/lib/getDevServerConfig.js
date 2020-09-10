@@ -4,6 +4,7 @@ module.exports = function getDevServerConfig(serverConfig = {}, options) {
   const _ = require('lodash')
   const cors = require('cors')
   const cookieParser = require('cookie-parser')
+  const history = require('connect-history-api-fallback')
   const createRenderIndexMiddleware = require('./middleware/render-index')
   const { createProxyMiddleware } = require('http-proxy-middleware')  
 
@@ -21,7 +22,7 @@ module.exports = function getDevServerConfig(serverConfig = {}, options) {
     const _beforeHook = (app) => {
       app.use(cors({ origin: true, credentials: true }))
       app.use(cookieParser())
-      app.use('/v1/', createProxyMiddleware({
+      app.use('/v1', createProxyMiddleware({
           target: PROXY_QI_TARGET,
           // true/false, if you want to verify the SSL Certs
           secure: false, 
@@ -33,6 +34,7 @@ module.exports = function getDevServerConfig(serverConfig = {}, options) {
           }
         }
       ))
+      app.use(history())
       app.use(createRenderIndexMiddleware(options))
     }
     if (typeof serverConfig.before === 'function') {
@@ -54,7 +56,8 @@ module.exports = function getDevServerConfig(serverConfig = {}, options) {
     liveReload: false,
     clientLogLevel: 'none',
     port: 9180,
+    historyApiFallback: true,
     disableHostCheck: true,
-    host: '127.0.0.1',
+    host: '0.0.0.0',
   }, serverConfig) 
 }

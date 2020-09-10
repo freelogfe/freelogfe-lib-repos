@@ -1,6 +1,6 @@
 {
   "name": "@freelog/cli-service",
-  "version": "0.1.15",
+  "version": "0.1.17",
   "description": "Freelog平台widget本地开发服务",
   "author": "wwzh <790727372@qq.com>",
   "homepage": "",

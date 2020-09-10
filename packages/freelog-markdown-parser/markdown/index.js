@@ -1,7 +1,6 @@
 import Marked from 'marked'
 import codeHighlight from './code-highlight'
 import styleString from './styles/index.less'
-console.log(require('./styles/index.less'))
 
 const styleFragment = document.createElement('style')
 styleFragment.innerHTML = styleString

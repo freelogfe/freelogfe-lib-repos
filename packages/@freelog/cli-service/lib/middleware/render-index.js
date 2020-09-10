@@ -12,7 +12,7 @@ module.exports = (options) => {
     const devMode = options['devMode']
     const NODE_INDEX_TPL_URL = !devMode.internal ? 'http://frcdn.oss-cn-shenzhen.aliyuncs.com/pagebuild/index.html' : 'http://test-frcdn.oss-cn-shenzhen.aliyuncs.com/pagebuild/index.html' 
     
-    if (req.url !== '/') {
+    if (req.url !== '/' && req.url !== '/index.html') {
       next()
     } else {
       let themeHTMLFragment = ''
